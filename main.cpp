@@ -100,6 +100,7 @@ int main() {
 		}
 		default: {
 		}
+			   cout << "Invalid choice selected\n";
 		}
 
 
