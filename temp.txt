@@ -1,0 +1,50 @@
+
+//string reversed(string text);
+//
+//string secArr[6];
+//
+//
+//int main() {
+//	string myString[] = { "Hello", "World", "Iskled", "Adebayo" };
+//
+//	
+//	//cout << myString;
+//
+//	cout << "****************************" << "\n";
+//
+//	for (const string &i : myString) {
+//		cout << i << "\t" << i.length() << "\t" << reversed(i) << "\n";
+//	}
+//
+//
+//
+//	return 0;
+//}
+//
+//string reversed(string textIn) {
+//	static int counter = 0;
+//	static string* ptrSecArr = secArr;
+//	
+//	int start = 0;
+//	int end = textIn.length() - 1;
+//
+//	while (start < end) {
+//
+//		swap(textIn[start], textIn[end]);
+//		start++;
+//		end--;
+//		
+//
+//	}
+//	secArr[counter] = textIn;
+//	counter++;
+//
+//	//*(++ptrSecArr) = secArr[counter];
+//
+//	//cout << ptrSecArr[counter] << "\n";
+//
+//	return textIn;
+//
+//	
+//
+//}

@@ -27,4 +27,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="temp.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="score.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
