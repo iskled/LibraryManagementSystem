@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <map>
 
 using namespace std;
 
@@ -78,4 +79,26 @@ Books& inPopulate(Books& bookTemplate) {
 
 }
 
-        
+
+void mPopulate(Officer& officer) {
+
+    cout << "Enter officer position\n";
+    getline(cin, officer.position);
+
+    cout << "Enter officer sex\n";
+    cin >> officer.sex;
+
+    cout << "Enter officer age\n";
+    cin >> officer.age;
+    cin.ignore();
+
+    cout << "Enter officer race\n";
+    getline(cin, officer.race);
+
+}
+
+void writeFile(map<string, Officer>& staff, ofstream & outFile) {
+    for (const auto& pair : staff) {
+        outFile << pair.first, pair.second;
+    }
+}
