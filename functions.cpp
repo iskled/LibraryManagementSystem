@@ -12,6 +12,15 @@ string getNextLine(ifstream& inFile) {
     return line;
 }
 
+//void operator<<(ofstream& os, const Officer& officer) {
+//    os << officer.fullName << " " << officer.position << " " << officer.sex << " " << officer.age << " " << officer.race;
+//    return os;
+//}
+//
+//void operator <<(ofstream& OUTFILE, map<string, Officer>& STAFF) {
+//    OUTFILE << STAFF.
+//}
+
 Books& populate(Books& bookTemplate) {                 // Book& populate(Books &bookTemplate) to be implemented later
     cin.ignore();
     cout << "Enter title of the book : ";
@@ -92,13 +101,19 @@ void mPopulate(Officer& officer) {
     cin >> officer.age;
     cin.ignore();
 
-    cout << "Enter officer race\n";
-    getline(cin, officer.race);
+    cout << "Enter officer race\n";    getline(cin, officer.race);
 
 }
 
 void writeFile(map<string, Officer>& staff, ofstream & outFile) {
     for (const auto& pair : staff) {
-        outFile << pair.first, pair.second;
+        outFile << pair.first << "\n";
+        outFile << pair.second.fullName<<"\n";
+        outFile << pair.second.age<<"\n";
+        outFile << pair.second.position<<"\n";
+        outFile << pair.second.sex<<"\n";
+        outFile << pair.second.race<<"\n";
+        outFile << '¬' << "\n";
+       /* outFile << pair;*/
     }
 }
