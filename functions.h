@@ -34,3 +34,6 @@ Books& populate(Books& bookTemplate);
 string getNextLine(ifstream& inFile);
 void mPopulate(Officer& officer);
 void writeFile(map < string, Officer> & staff, ofstream& outFile);
+
+void function1();
+void function2();
