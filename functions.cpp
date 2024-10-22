@@ -3,8 +3,10 @@
 #include <string>
 #include <fstream>
 #include <map>
+#include <chrono>
 
 using namespace std;
+//using this_thread;
 
 string getNextLine(ifstream& inFile) {
     string line;
@@ -105,6 +107,7 @@ void mPopulate(Officer& officer) {
 
 }
 
+
 void writeFile(map<string, Officer>& staff, ofstream & outFile) {
     for (const auto& pair : staff) {
         outFile << pair.first << "\n";
@@ -116,4 +119,15 @@ void writeFile(map<string, Officer>& staff, ofstream & outFile) {
         outFile << '¬' << "\n";
        /* outFile << pair;*/
     }
+}
+
+void function1() {
+    for (int i = 0; i < 500; i++)
+        cout << '-';
+    //this_thread::sleep_for(chrono::seconds(1));
+}
+
+void function2() {
+    for (int i = 0; i < 500; i++)
+        cout << '+';
 }
