@@ -152,7 +152,6 @@ int main() {
 			thread  osThread1(function1);
 			thread osThread2(function2);
 
-			system("pause>0");
 
 			break;
 		}
