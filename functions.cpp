@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <map>
+#include <thread>
 #include <chrono>
 
 using namespace std;
@@ -125,9 +126,11 @@ void function1() {
     for (int i = 0; i < 500; i++)
         cout << '-';
     //this_thread::sleep_for(chrono::seconds(1));
+    this_thread::sleep_for(chrono::milliseconds(500));
 }
 
 void function2() {
     for (int i = 0; i < 500; i++)
         cout << '+';
+   this_thread:: sleep_for(chrono::milliseconds(500));
 }
