@@ -153,6 +153,9 @@ int main() {
 			thread osThread2(function2);
 
 
+			osThread1.join();
+			osThread2.join();
+
 			break;
 		}
 		case 6:
