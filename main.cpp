@@ -1,3 +1,8 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
+
+
 /***********************************************************************
 * Program to practice STL containers such as the following
 1. Vector
@@ -12,7 +17,7 @@ Author: Iskled Adebayo
 #include <vector>
 #include <fstream>
 #include <map>
-#include <sstream>#
+#include <sstream>
 #include <thread>
 
 
@@ -27,14 +32,19 @@ int main() {
 		cout << "3. Populate catalogue vector with file\n";
 		cout << "4. Map processing and storage in the text file\n";
 		cout << "5. Demostrate multitasking\n";
-		cout << "6. Quit\n";
+		cout << "6. Plant Objects\n";
+		cout << "7. Other classes\n";
+		cout << "8. Quit\n";
+		cout << "9. Another Demonstration of a class Behaviour\n";
+		cout << "10. Vehicle manufacture \n";
+		cout << "11. Employee Class Implementation\n";
 		cout << "**********************************************************\n\n";
 
 		int menu;
 		do {
-			cout << "Enter 1 - 6 for menu items : ";
+			cout << "Enter 1 - 11 for menu items : ";
 			cin >> menu;
-		} while (menu < 1 || menu >6);
+		} while (menu < 1 || menu >11);
 
 		switch (menu) {
 
@@ -69,6 +79,7 @@ int main() {
 		{
 			//Book catalogue processing section
 			vector <Books> catalogue;
+			vector <map<string, int>> xyz;  //to be tested!!!
 			int choice{};
 
 			// Section to check if a positive choice is made
@@ -98,13 +109,14 @@ int main() {
 			catalogue.push_back(book);
 			break;
 		}
+
 		case 4:
 		{
 			// Map processing and storage in the text file
 
 			map<string, Officer> staff;
 			char choice;
-			do{
+			do {
 
 				cout << "Enter name of officer to process\n";
 				string fullName, firstName;
@@ -126,22 +138,22 @@ int main() {
 			} while (choice != 'N');
 
 
-				cout << "File now being written to the text file\n";
+			cout << "File now being written to the text file\n";
 
-				ofstream outFile;
-				outFile.open("staff.txt");
+			ofstream outFile;
+			outFile.open("staff.txt");
 
-				if (!outFile.is_open()) {
-					cout << "*** File opened unsuccessfully ***\n";
-				}
-				else
-				{
-					writeFile(staff, outFile);
-					outFile.close();
+			if (!outFile.is_open()) {
+				cout << "*** File opened unsuccessfully ***\n";
+			}
+			else
+			{
+				writeFile(staff, outFile);
+				outFile.close();
 
-					cout << "*** Object written to file successfully ***\n";
-				}
-				break;
+				cout << "*** Object written to file successfully ***\n";
+			}
+			break;
 		}
 
 		case 5:
@@ -158,15 +170,119 @@ int main() {
 
 			break;
 		}
-		case 6:
+
+		case 6: {
+			Plant plant;
+
+
+			
+			cout << "plant name " << plant.roughCapability;
+			break;
+		}
+
+		case 8:
 		{
 			return 0;
 		}
+
+		case 7: {
+			User user2;
+			User user1("Iskled", "Adebayo", 38);
+			printUser(user1);
+			printUser(user2);
+			/*{
+
+
+				fname = "Iskeld";
+				lastName = "Adebayo";
+				Age = 39;
+			}*/
+			
+				
+				break;
+			
+		}
+
+		case 9: {
+			Stadium stadium("Stamford Bridge", 40000, "London");
+
+			cout << "Welcome to " << stadium.getName() << "\n";
+			cout << "Our minimum capacity = " << stadium.minimumCapacity() << "\n";
+			cout << "And our maximum capacity = " << stadium.maxCapacity() << "\n";
+			break;
+
+		}
+
+		case 10: {
+			Vehicle vehicle;
+			Car car("Trailer", "483/90R34", "6.8", "ICE", "Germany", "Mercedes", "434");
+			
+		}
+
+		case 11: {
+
+			cout << "Enter an Employee information\n\n";
+
+			string ID, name, sex, address, position;
+			int age, salary;
+
+			cout << "Enter employee ID :";
+			cin.ignore(); // Clear the buffer
+			getline(cin, ID);
+
+
+			cout << "Enter employee Name :";
+			getline(cin, name);
+
+			cout << "Enter employee Age :";
+			cin >> age;
+
+			cout << "Enter gender :";
+			cin >> sex;
+			
+			cout << "Enter Address :";
+			cin.ignore();
+			getline(cin, address);
+
+			cout << "Enter employee position: ";
+			getline(cin, position);
+
+			cout << "Enter employee salary: ";
+			cin >> salary;
+
+			Employee employee(ID, name, age, sex, address, position, salary);
+
+			/*
+			Write Employee data to file
+			However, function writeFile to be explored further so it can be re-used
+			*/ 
+
+			cout << "Employee file now being written to the text file\n";
+
+			ofstream outFile;
+			static const char* fileLocation = "Employee.txt";
+			outFile.open(fileLocation);
+
+			if (!outFile.is_open()) {
+				cout << "*** File opened unsuccessfully ***\n";
+			}
+			else
+			{
+				writeToFile(employee, outFile);
+				outFile.close();
+
+				cout << "*** Employee record written to file successfully ***\n";
+			}
+
+
+			break;
+		}
+
 		default: {
-		}
-			   cout << "Invalid choice selected\n";
+
+			cout << "Invalid choice selected\n";
 		}
 
-
+		}
 	}
 }
