@@ -1,3 +1,7 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
+
 #include "functions.h"
 #include <iostream>
 #include <string>
@@ -8,6 +12,13 @@
 
 using namespace std;
 //using this_thread;
+
+void printUser(User u) {
+    cout << u.firstName << "\n";
+    cout << u.lastName << "\n";
+    cout << u.Age << "\n";
+    cout << u.Email << "\n";
+}
 
 string getNextLine(ifstream& inFile) {
     string line;
@@ -133,4 +144,16 @@ void function2() {
     for (int i = 0; i < 500; i++)
         cout << '+';
    this_thread:: sleep_for(chrono::milliseconds(500));
+}
+
+void writeToFile(Employee& employee, ofstream& outFile) { // Opening and closing stype to be decided later i.e. to be opened once and write all or otherwise
+   
+    outFile << employee.getID() << "\n";
+    outFile << employee.getName() << "\n";
+    outFile << employee.getAge() << "\n";
+    outFile << employee.getSex() << "\n";
+    outFile << employee.getAddress() << "\n";
+    outFile << employee.getPosition() << "\n";
+    outFile << employee.getSalary() << "\n";
+    outFile << '¬' << "\n";
 }
