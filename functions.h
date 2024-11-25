@@ -1,36 +1,29 @@
+//#pragma once
 
-#pragma once
-#include <string>
+#ifndef FUNCTIONS_H
+
+#define FUNCTIONS_H
+
+
+
+
 #include <iostream>
-#include <vector>
+#include <string>
 #include <map>
 #include <fstream>
 
 
 using namespace std;
 
+// Books struct declaration
 struct Books {
-	string title{};
-	// This is a personal academic project. Dear PVS-Studio, please check it.
-    // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
-	
-	string author{};
-	string publisher{};
-	string subject{};
-	string ISBN{};
-	string WorldCat{};
+	string title{},author{}, publisher{},subject{}, ISBN{},WorldCat{};
 	double DeweyDecimal{};
-	int pubYear{};
-	int acqYear{};
-	int currStock{};
-
-	Books() {
-
-	}
-
-	~Books() {
-
-	}
+	int pubYear{ 0 }, acqYear{0},currStock{0};
+		
+	// The following constructor and destructors are useless since they implicitely defined already by the compiler
+	Books();
+	~Books();
 };
 
 struct Officer {
@@ -40,6 +33,7 @@ struct Officer {
 	int age{};
 	string race{};
 
+	//want to make the default constructor or destructor explicitly visible for documentation purposes.
 	Officer() {
 
 	}
@@ -50,29 +44,6 @@ struct Officer {
 };
 
 
-class Plant {
-	string plantName{};
-	string plantType{};
-	string tyreType{};
-		string maneuvCapability;
-
-
-
-public:
-
-	int roughCapability{ 10 };
-	Plant() {
-		int reachHeight{ 20 };
-		bool outDoorCapability;
-		bool autonomousCapable{ 1 };
-		int payloadCapable;
-		int lifeSpan;
-		string engineType{ "ICE" };
-	}
-
-	~Plant() = default;
-
-};
 
 class User {
 public:
@@ -90,7 +61,8 @@ public:
 	}
 
 	// Params constructor
-	User(string& fname, string& lname, int age, string& email) :  firstName(fname), lastName(lname), Age(age), Email(email){}
+	User(string& fname, string& lname, int age, string& email) :  firstName(fname), lastName(lname), Age(
+		age), Email(email){}
 
 	User(string fname, string lname, int age) {
 		firstName = fname;
@@ -143,7 +115,7 @@ public:
 	}
 };
 
-static class Vehicle {
+class Vehicle {
 	string type;
 	string tyresNum;
 	string engineCapacity;
@@ -174,31 +146,26 @@ public:
 
 };
 
+// ~region Car class declaration
 class Car : public Vehicle {
 public:
 	string make;
 	string model;
 
-	Car(string typ, string tyrNum, string egCap, string engTyp, string country, string mk, string mdl) {
-		setType(typ);
-		setTyresNum(tyrNum);
-		setEngineCapacity(egCap);
-		engineType = engTyp;
-		countryOrigin = country;
-		make = mk;
-		model = mdl;
-	};
+	Car(string typ, string tyrNum, string egCap, string engTyp, string country, string mk, string mdl);
+	string sounds(string vehicleType);
+};
+// #end of region
 
-	string sounds(string vehicleType) {
-		if (vehicleType == "sport") {
-			return "vroooooooo";
-		}
-		else if (vehicleType == "Hatchback") {
-			return "mooooooovey";
-		}
-		else return "wroowrow";
+// Plant Declaration
+class Plant {
+public:
+	string plantName{}, plantType{}, tyreType{}, maneuvCapability, roughCapability;
 
-	}
+	Plant();
+
+	~Plant();
+
 };
 
 // Base class
@@ -213,106 +180,123 @@ protected:
 	int salary;
 
 public:
-	Employee(const string& empId, const string& empName, int empAge, const string& empSex,const string& empAddress, const string& empPosition, const int empSalary ) 
-		: ID(empId),name(empName),age(empAge),sex(empSex),address(empAddress),position(empPosition),salary(empSalary) {} // Constuctor for the Employee class with initialization list
 
-	// Getters
-	string& getID() { return ID; }
-	string& getName() { return name; }
-	int getAge() { return age; }
-	string& getSex() { return sex; }
-	string& getAddress() { return address; }
-	string& getPosition() { return position; }
-	int getSalary() { return salary; }
+	//Constructor declaration
+	Employee(const string& empId, const string& empName, int empAge, const string& empSex,
+		const string& empAddress, const string& empPosition, const int empSalary);
 
-	// Setters
-	void setID(const string& empId) { ID = empId; }
-	void setName(const string& empName) { name = empName; }
-	void setAge(int empAge) { age = empAge; }
-	void setSex(const string& empSex) { sex = empSex; }
-	void setAddress(const string& empAddress) { address = empAddress; }
-	void setPosition(const string& empPosition) { position = empPosition; }
-	void setSalary(const int empSalary) { salary = empSalary; }
+	// Getters declaration
+	string& getID();
+	string& getName();
+	int getAge();
+	string& getSex();
+	string& getAddress();
+	string& getPosition();
+	int getSalary();
+
+	// Setters declaration
+	void setID(const string& empId);
+	void setName(const string& empName);
+	void setAge(int empAge);
+	void setSex(const string& empSex);
+	void setAddress(const string& empAddress);
+	void setPosition(const string& empPosition);
+	void setSalary(const int empSalary);
 
 	// Print Employee data to the screen
-	virtual void displayInfo() {
-		cout << "ID : " << ID << "\n";
-		cout << "Name: " << name << "\n";
-		cout << "Age: " << age << "\n";
-		cout << "Sex: " << sex << "\n";
-		cout << "Address: " << address << "\n";
-		cout << "Position: " << position << "\n";
-		cout << "Salary: " << salary << "\n";
-	}
+
+	virtual void displayInfo();
 
 	//Calculate Annual Salary
-	int annualSalary(int monthlySalary) {
-		return monthlySalary * 12;
-	}
+	int annualSalary(int monthlySalary);
 
 	//Update residential address..............to be implemented later
+
+
+
+  ~Employee();
 	
 };
 
 // Derived class linking with base class
 class Manager : public Employee {
-	string officialCar;
-	string officialResidence;
+	string m_officialCar;
+	string m_officialResidence;
 
 public:
 
 	// Constructor with using the initialization list of the parent Employee
-	Manager(const string& manID, const string& manName, const int manAge, const string& manSex, const string& manAddress, const string& manPosition, 
-		const int manSalary, const string& manOfficialCar, const string& manOfficialResidence) 
-		: Employee(manID, manName, manAge, manSex, manAddress, manPosition, manSalary), officialCar(manOfficialCar), 
-		officialResidence(manOfficialResidence){}
+	Manager(const string& manID, const string& manName, const int manAge, const string& manSex, const string& manAddress, const string& manPosition,
+		const int manSalary, const string& m_officialCar, const string& m_officialResidence);
 
 	// Getters
-	string getOfficialCar() { return officialCar; }
-	string& getOfficialResidence() { return officialResidence; }
+	string& getOfficialCar();
+	string& getOfficialResidence();
 
 	//Setters
-	void setOfficialCar(string& oc) { officialCar = oc; }
-	void setOfficialResidence(string& orr) { officialResidence = orr; }
+	void setOfficialCar(string& officialCar);
+	void setOfficialResidence(string& officialResidence);
 
 	// Fucntion to display manager content including employee
-	void displayInfo() override {  // const to be researched
-		Employee::displayInfo(); 
-			cout << "Official Car :" << officialCar << "\n";
-			cout << "Official Residence :" << officialResidence << "\n";
-	}
+	void displayInfo() override;
 
 	//Conduct meeting
 
-	// Assign tax
+	//Manager Destructor declaration 
+	~Manager();
 };
 
 //Another derived class on Employee
-class Director : public Employee {
-	int budget;
-	string& region;
-	string& strategicGoal;
+class Director : public Manager {
+	int m_budget = 0;
+	string m_region;
+	string m_strategicGoal;
 
-//public:
-//	Director(const string& dirID, const string& dirName, const int dirAge, const string& dirSex, const string& dirAddress, const string& dirPosition,
-//		const int dirSalary, const string& dirOfficialCar, const string& dirOfficialResidence, const int dirBudget, const string& dirRegion, 
-//		const string& dirStrategicGoal) : Manager(dirID, dirName, dirAge, dirSex, dirAddress, dirPosition, dirSalary, dirOfficialCar, dirOfficialResidence), 
-//		budget(dirBudget), region(dirRegion), strategicGoal(dirStrategicGoal) {};
-
-	/*Director(const string& dirID, const string& dirName, const int dirAge, const string& dirSex, const string& dirAddress, const string& dirPosition,
+public:
+	Director(const string& dirID, const string& dirName, const int dirAge, const string& dirSex, const string& dirAddress, const string& dirPosition,
 		const int dirSalary, const string& dirOfficialCar, const string& dirOfficialResidence, const int dirBudget, const string& dirRegion,
-		const string& dirStrategicGoal) : Employee(dirID, dirName, dirAge, dirSex, dirAddress, dirPosition, dirSalary, dirOfficialCar, dirOfficialResidence),
-		budget(dirBudget), region(dirRegion), strategicGoal(dirStrategicGoal) {};*/
+		const string& dirStrategicGoal);
 
-	
+	void displayInfo() override;
 
+	//Director Setters
+	void setBudget(int budget) { m_budget = budget; }
+	void setRegion(string& region) { m_region = region; }
+	void setStrategicGoal(string& goal) { m_strategicGoal = goal; }
 
+	//Director Getters
+	int getBudget() { return m_budget; }
+	string& getRegion() { return m_region; }
+	string& getStrategicGoal() { return m_strategicGoal; }
+
+	//Director Destructor Declaration
+	~Director();
 };
 
+// FIle processing declaration
 
-void writeToFile(Employee& employee, ofstream& outFile);
-void writeToFile(Manager& manager, ofstream& outFile);
-void writeToFile(Director& director, ofstream& outFile);
+template <class T>
+
+void fileProcessing(string& m_fileLocation, T& m_staff) {
+
+	ofstream outFile;
+	outFile.open(m_fileLocation, ios::app);
+
+	if (!outFile.is_open()) {
+		cout << "*** File opened unsuccessfully ***\n";
+	}
+	else
+	{
+		writeToFile(outFile, m_staff);
+		outFile.close();
+
+		cout << "\n\n*** Staff record written to file successfully ***\n";
+	}
+}
+
+void writeToFile(ofstream& outFile, Employee& employee);
+void writeToFile(ofstream& outFile, Manager& manager);
+void writeToFile(ofstream& outFile, Director& director);
 
 
 
@@ -327,3 +311,4 @@ Entered data to be printed to a file
 
 */
 
+#endif // FUNCTIONS_H
