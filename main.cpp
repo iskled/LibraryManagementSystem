@@ -221,59 +221,124 @@ int main() {
 
 		case 11: {
 
-			cout << "Enter an Employee information\n\n";
-
-			string ID, name, sex, address, position;
-			int age, salary;
-
-			cout << "Enter employee ID :";
-			cin.ignore(); // Clear the buffer
-			getline(cin, ID);
-
-
-			cout << "Enter employee Name :";
-			getline(cin, name);
-
-			cout << "Enter employee Age :";
-			cin >> age;
-
-			cout << "Enter gender :";
-			cin >> sex;
+			int choice;
 			
-			cout << "Enter Address :";
-			cin.ignore();
-			getline(cin, address);
+			while (true) {	// Loop to control exit from inner case switch
+				do {				// Loop to control exit from inner menu display
+					cin.ignore();
+					cout << "\nEnter Employee information\n\n";
+					cout << "1. Junior officer\n";
+					cout << "2. Manager\n";
+					cout << "3. Director\n";
+					cout << "4. Quit\n\n";
+					cout << "Enter choice : ";
+					cin >> choice;
+				} while (choice < 1 || choice > 4);
 
-			cout << "Enter employee position: ";
-			getline(cin, position);
+				if (choice == 4) break;
+				
 
-			cout << "Enter employee salary: ";
-			cin >> salary;
+				// Employee record common to all (Employee, Manager, Director class)
 
-			Employee employee(ID, name, age, sex, address, position, salary);
+				string ID, name, sex, address, position;
+				int age, salary;
 
+				cout << "Enter employee ID :";
+				cin.ignore(); // Clear the buffer
+				getline(cin, ID);
+
+				cout << "Enter employee Name :";
+				getline(cin, name);
+
+				cout << "Enter employee Age :";
+				cin >> age;
+
+				cout << "Enter gender :";
+				cin >> sex;
+
+				cout << "Enter Address :";
+				cin.ignore();
+				getline(cin, address);
+
+				cout << "Enter employee position: ";
+				getline(cin, position);
+
+				cout << "Enter employee salary: ";
+				cin >> salary;
+
+				// Choose proper class to process
+				switch (choice) {
+
+					//Employee class case
+				case 1: {
+
+					Employee employee(ID, name, age, sex, address, position, salary); // Should be able to use a constructor ovwerload!!!!!!
+
+					// Open file to be written to
+
+					string fileLocation = "Employee.txt";
+					fileProcessing(fileLocation, employee);
+					break;
+				}
+				case 2:{
+
+					string officialCar, officialResidence;
+					
+					cout << "Enter manager official car Make and Model : ";
+					cin.ignore();
+					getline(cin, officialCar);
+
+					cout << "Enter manager official residencial address : ";
+					getline(cin, officialResidence);
+
+					Manager manager(ID, name, age, sex, address, position, salary, officialCar, officialResidence);
+					
+					string fileLocation = "Manager.txt";
+
+					fileProcessing(fileLocation, manager);
+					break;
+				}
+				case 3: {
+					int budget;
+					string region, strategicGoal, officialCar, officialResidence;
+
+					cout << "Enter Director official car : ";
+					cin.ignore();
+					getline(cin, officialCar);
+
+					cout << "Enter Director official residence : ";
+					getline(cin, officialResidence);
+
+					cout << "Enter director budget : ";
+					cin>>budget;
+
+					cout << "Enter Director region : ";
+					cin.ignore();
+					getline(cin, region);
+
+					cout << "Enter Director strategic goal : ";
+					getline(cin, strategicGoal);
+
+					Director director(ID, name, age, sex, address, position, salary, officialCar, officialResidence, budget, region, strategicGoal);
+
+					string fileLocation = "Director.txt";
+
+					fileProcessing(fileLocation, director);					
+					break;
+				}
+
+				default: {
+					break;
+				}
+				}
+			}
+				 
 			/*
 			Write Employee data to file
 			However, function writeFile to be explored further so it can be re-used
 			*/ 
 
-			cout << "Employee file now being written to the text file\n";
-
-			ofstream outFile;
-			static const char* fileLocation = "Employee.txt";
-			outFile.open(fileLocation);
-
-			if (!outFile.is_open()) {
-				cout << "*** File opened unsuccessfully ***\n";
-			}
-			else
-			{
-				writeToFile(employee, outFile);
-				outFile.close();
-
-				cout << "*** Employee record written to file successfully ***\n";
-			}
-
+			
 
 			break;
 		}
