@@ -14,14 +14,11 @@ Author: Iskled Adebayo
 #include <iostream>
 #include <string>
 #include <format>
-#include <vector>
+#include <vector>   // for using the library objects
 #include <fstream>
-#include <map>
-#include <sstream>
-#include <thread>
-
-
-using namespace std;
+#include <map>   // for using the map from STL
+#include <sstream>   // for using the istringstream function
+#include <thread>     // for  using the multi-threading library
 
 
 int main() {
@@ -38,13 +35,15 @@ int main() {
 		cout << "9. Another Demonstration of a class Behaviour\n";
 		cout << "10. Vehicle manufacture \n";
 		cout << "11. Employee Class Implementation\n";
+		cout << "12. Multi-threaded programming\n";
+		cout << "13. Evaluate execution timings\n";
 		cout << "**********************************************************\n\n";
 
 		int menu;
 		do {
-			cout << "Enter 1 - 11 for menu items : ";
+			cout << "Enter 1 - 12 for menu items : ";
 			cin >> menu;
-		} while (menu < 1 || menu >11);
+		} while (menu < 1 || menu >12);
 
 		switch (menu) {
 
@@ -341,6 +340,47 @@ int main() {
 			
 
 			break;
+		}
+
+		case 12: {
+			// Multi-threaded programming
+
+			// Create a thread
+
+			
+
+			thread T1(funRun, 100);
+
+			cout << " Thread function must have been created and just returned \n";
+
+			//if (T1.joinable())
+				T1.detach();
+
+
+			break;
+		}
+
+		case 13: {
+			// Evaluating execution times
+
+			ull start = 0, end = 1900000000, totalEven{ 0 }, totalOdd{ 18776 };
+			
+			auto startTime = high_resolution_clock::now(); // Starting time-stamp
+
+			thread evenThread(evenSum, start, end, ref(totalEven));
+			thread oddThread(oddSum, start, end, ref(totalOdd));
+
+			evenThread.join();
+			oddThread.join();
+			
+			cout << "Sum of number of odd numbers between  " << start << " and " << end << " = " << totalOdd << "\n";
+			cout << "Sum of number of even numbers between  " << start << " and " << end << " = " << totalEven << "\n";
+
+			auto stopTime = high_resolution_clock::now(); // Stop time-stamp
+
+			auto duration = duration_cast<microseconds>(stopTime - startTime );
+
+			cout << "Here is the execution time taken = " << duration.count()/1000000 << "\n";
 		}
 
 		default: {
