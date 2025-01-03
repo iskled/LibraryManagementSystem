@@ -4,7 +4,7 @@
 
 
 /***********************************************************************
-* Program to practice STL containers such as the following
+* Program used STL containers such as the following
 1. Vector
 2. List
 Author: Iskled Adebayo
